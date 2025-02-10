@@ -13,13 +13,18 @@ const backend = createBackend();
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 backend.add(import('@backstage/plugin-scaffolder-backend'));
+// github integration
 backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
+
 backend.add(import('@backstage/plugin-techdocs-backend'));
 
 // auth plugin
 backend.add(import('@backstage/plugin-auth-backend'));
 // See https://backstage.io/docs/backend-system/building-backends/migrating#the-auth-plugin
 backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
+// See https://github.com/backstage/backstage/blob/master/docs/auth/guest/provider.md
+// For github login
+backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 // See https://backstage.io/docs/auth/guest/provider
 
 // catalog plugin
@@ -48,6 +53,9 @@ backend.add(import('@backstage/plugin-search-backend-module-pg'));
 // search collators
 backend.add(import('@backstage/plugin-search-backend-module-catalog'));
 backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
+
+// Github
+backend.add(import('@backstage/plugin-catalog-backend-module-github'));
 
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));

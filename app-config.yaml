@@ -28,8 +28,16 @@ backend:
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
   database:
-    client: better-sqlite3
-    connection: ':memory:'
+    #client: better-sqlite3
+    #connection: ':memory:'
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
 
 integrations:
@@ -93,6 +101,36 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+# catalog:
+ # orphanStrategy: delete
+  #providers:
+    #github:
+      #returngisOrg:        
+       # organization: returngis
+       # catalogPath: '/catalog-info-returngis.yaml'  
+       # filters:
+       #   branch: main
+       # schedule:
+       #   frequency: { minutes: 60 }
+       #   timeout: { minutes: 3 }          
+     # personalAccount:
+      #  organization: DiegoDiaz2003
+      #  catalogPath: '/catalog-info-diegodiaz.yaml' 
+      #  filters:
+      #    branch: main
+      #    allowForks: false
+      #    topic:
+      #      include:
+      #        - "backstage-include"            
+      #  schedule:
+      #    frequency: { minutes: 60 }     
+      #    timeout: { minutes: 3 }
+
+     #- type: url
+       #target: https://github.com/0GiS0/backstage-demo/blob/github-discovery/backstage/catalog-info.yaml
+       #rules:
+        # - allow: [System, Domain, Component, API, Resource, Location, Template]
 
     ## Uncomment these lines to add more example data
     # - type: url
